@@ -7,17 +7,30 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   radar:
     runs-on: ubuntu-latest
+
     steps:
       - name: Descargar repositorio
         uses: actions/checkout@v4
 
-      - name: Verificar ejecución semanal
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Actualizar noticias
+        run: python scripts/actualizar_radar.py
+
+      - name: Guardar radar actualizado
         run: |
-          echo "REGISTRO MX - Radar semanal"
-          echo "Fecha UTC: $(date -u)"
-          echo "Automatización inicial funcionando"
+          git config user.name "registro-mx-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add radar.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Actualizar Radar informativo"
+            git push
+          fi
