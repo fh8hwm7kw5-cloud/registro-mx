@@ -51,3 +51,12 @@ La importación es local y temporal. Los datos no se envían a un servidor ni se
 ## Radar informativo (v0.3)
 
 La versión incluye una sección separada de enlaces a publicaciones periodísticas y cobertura de investigaciones públicas sobre contrataciones del INE. Cada tarjeta muestra medio, fecha, tema, tipo de publicación, resumen editorial y enlace a la nota original. Estas notas son referencias informativas: **no se importan como datos contractuales ni alimentan los indicadores**. La selección es inicial y debe actualizarse y verificarse periódicamente.
+
+
+## REGISTRO MX 0.4: datos oficiales 2025
+
+Se añade `datos-2025.html`, un panel independiente que analiza las 129,074 filas del archivo fuente `CONTRATOS_COMPRASMX_2025.CSV` aportado para el proyecto. Contiene estadísticas sobre todas las filas y un explorador limitado explícitamente a las primeras 2,500 filas. La página principal conserva la demo y ofrece un enlace al nuevo panel. No se incorpora el CSV original de 150 MB al repositorio.
+
+Los montos son una suma exploratoria del campo `Monto sin imp./mínimo` para registros con moneda MXN y valor numérico no negativo; no son gasto ejecutado ni contratos únicos. La clasificación por instituciones y proveedores utiliza nombres tal como aparecen en el CSV. No hay actualización automática ni revisión documental de cada contrato.
+
+Para publicar, sube los archivos de esta carpeta a la raíz del repositorio GitHub Pages, reemplazando `index.html` y `README.md` y añadiendo `datos-2025.html`, `resumen_2025.json`, `muestra_2025.json`.
