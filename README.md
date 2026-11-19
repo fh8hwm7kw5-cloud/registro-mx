@@ -60,3 +60,7 @@ Se añade `datos-2025.html`, un panel independiente que analiza las 129,074 fila
 Los montos son una suma exploratoria del campo `Monto sin imp./mínimo` para registros con moneda MXN y valor numérico no negativo; no son gasto ejecutado ni contratos únicos. La clasificación por instituciones y proveedores utiliza nombres tal como aparecen en el CSV. No hay actualización automática ni revisión documental de cada contrato.
 
 Para publicar, sube los archivos de esta carpeta a la raíz del repositorio GitHub Pages, reemplazando `index.html` y `README.md` y añadiendo `datos-2025.html`, `resumen_2025.json`, `muestra_2025.json`.
+
+
+## Versión 0.5: 2020–2026
+Se agrega `datos-historicos.html`, con estadísticas de filas por año y una muestra navegable. Archivos de respaldo: `resumen_2020_2026.json` y `muestra_2020_2026.json`. El año 2026 se identifica como YTD provisional porque el archivo recibido tiene extensión `.crdownload` y podría estar incompleto. 2020–2022 tienen cobertura no verificada. Las cifras son conteos de filas, no contratos únicos; no son gasto ejercido. No se automatiza la publicación en esta versión.

@@ -264,5 +264,5 @@ document.getElementById("csvFile").addEventListener("change",async e=>{let f=e.t
 document.getElementById("exportCsv").onclick=()=>{let headers=["id","objeto","dependencia","empresa","procedimiento","sector","fecha","anio","monto","estado","fuente","monto_original","monto_modificado"];let q=[headers.join(","),...contracts.map(c=>headers.map(h=>'"'+String(c[h]??"").replace(/"/g,'""')+'"').join(","))].join("\n");let a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+q],{type:"text/csv;charset=utf-8"}));a.download="registro-mx-contratos.csv";a.click();URL.revokeObjectURL(a.href)};
 render();renderNews();
 </script>
-</body>
+<div style="position:fixed;bottom:16px;right:16px;z-index:9999;background:#102d3a;color:white;padding:14px 18px;border-radius:12px;box-shadow:0 4px 18px #0004;font:600 14px system-ui"><a href="datos-historicos.html" style="color:#b5f4df;text-decoration:none">📊 Explorar datos 2020–2026 (2026 YTD) ↗</a></div></body>
 </html>
