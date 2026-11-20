@@ -1,23 +1,16 @@
-# REGISTRO MX 0.6
+# REGISTRO MX 0.8 (base de análisis y Observatorio de Precios)
 
-## Contenido
-- `index.html`: nuevo resumen de datos procesados de 2020–2026.
-- `demo.html`: copia de la página anterior con datos ficticios, claramente separada.
-- `datos-historicos.html` y `datos-2025.html`: exploradores de la versión 0.5.
-- `resumen_2020_2026.json`, `resumen_2025.json`: estadísticas derivadas de CSV aportados.
-- `muestra_2020_2026.json`, `muestra_2025.json`: muestras para navegación, no bases completas.
-- `plantilla_relaciones.csv`: plantilla original.
+## Instalación
+Subir los archivos del ZIP a la raíz del repositorio GitHub, conservando `.github/`, `scripts/`, `radar.html` y `radar.json` existentes. No subir el ZIP como archivo único.
 
-## INSTALACIÓN EN GITHUB
-Sube los 10 archivos de este ZIP a la **raíz** de tu repositorio `registro-mx` usando Add file > Upload files y Commit changes. Reemplaza los archivos homónimos existentes. NO borres ni reemplaces `.github/workflows/radar-semanal.yml`, `scripts/actualizar_radar.py`, `radar.json` ni `radar.html`: esos archivos ya están en GitHub y se preservan.
+## Módulos
+- `analisis.html`: filtros combinables, gráficas de registros por dependencia, porcentajes y exportación CSV. **Basado en muestra**, no en todo el universo de contratos.
+- `presupuestos.html` + `presupuestos.json`: estructura 2020–2026; cifras sin verificar permanecen `null`. No se publican cifras inventadas.
+- `precios.html` + `comparaciones_precios.json`: Observatorio de Precios, preparado para comparaciones verificadas, actualmente sin resultados.
+- `perfiles.html`: perfiles de proveedores y dependencias 2025.
 
-## Advertencias metodológicas
-Los recuentos son filas de los archivos, no contratos únicos. No representan necesariamente gasto público total. 2020–2022 tienen cobertura limitada; 2026 YTD es provisional y su archivo original puede estar incompleto. Los montos monetarios no se agregan en el resumen porque requieren validación de monedas, duplicados y reglas de importes. Las noticias son externas y no constituyen prueba de irregularidades. La página demostrativa permanece aislada en `demo.html`.
+## Para añadir comparaciones de precios
+Solo incorporar registros verificados a `comparaciones_precios.json`, con los campos `anio`, `producto`, `dependencia`, `precio_gobierno_mxn`, `precio_mercado_mxn`, `url_contrato`, `url_mercado`, `fecha_precio_mercado`. Antes de publicar verificar equivalencia de especificaciones, cantidades, IVA, moneda, vigencia, garantía y servicios incluidos. El administrador edita el JSON desde GitHub. No se incluye scraping automático ni autenticación administrativa en esta versión.
 
-## Automatización
-El Radar automático existente continúa operando con `radar.json` y `radar.html`; este paquete NO cambia el workflow ni automatiza la importación de contratos. Para actualizar contratos se requiere un proceso independiente de descarga, validación y publicación.
-
-
-## REGISTRO MX 0.7
-
-Nuevo explorador `perfiles.html` que lee `perfiles_2025.json`, generado a partir del CSV oficial 2025 completo. Incluye perfiles por nombre de proveedor o dependencia, recuentos de filas, contrapartes, procedimientos y hasta 8 enlaces a registros originales por perfil. No se calculan montos ni se infieren irregularidades. Los datos del radar automático se mantienen en GitHub y no se incluyen en este ZIP; no borrar `radar.json`, `radar.html`, `.github` ni `scripts`.
+## Limitaciones
+La suma monetaria en `analisis.html` solo usa importes numéricos con moneda explícita MXN en los registros de la muestra. No implica presupuesto ejercido ni sobreprecio. El Radar existente se conserva.

@@ -1,0 +1,57 @@
+{
+  "metadatos": {
+    "estado": "pendiente de integración de fuentes oficiales",
+    "nota": "No inferir presupuesto de los registros de contratos"
+  },
+  "anios": {
+    "2020": {
+      "aprobado_federal_mxn": null,
+      "ejercido_federal_mxn": null,
+      "fuente_aprobado": "",
+      "fuente_ejercido": "",
+      "dependencias": []
+    },
+    "2021": {
+      "aprobado_federal_mxn": null,
+      "ejercido_federal_mxn": null,
+      "fuente_aprobado": "",
+      "fuente_ejercido": "",
+      "dependencias": []
+    },
+    "2022": {
+      "aprobado_federal_mxn": null,
+      "ejercido_federal_mxn": null,
+      "fuente_aprobado": "",
+      "fuente_ejercido": "",
+      "dependencias": []
+    },
+    "2023": {
+      "aprobado_federal_mxn": null,
+      "ejercido_federal_mxn": null,
+      "fuente_aprobado": "",
+      "fuente_ejercido": "",
+      "dependencias": []
+    },
+    "2024": {
+      "aprobado_federal_mxn": null,
+      "ejercido_federal_mxn": null,
+      "fuente_aprobado": "",
+      "fuente_ejercido": "",
+      "dependencias": []
+    },
+    "2025": {
+      "aprobado_federal_mxn": null,
+      "ejercido_federal_mxn": null,
+      "fuente_aprobado": "",
+      "fuente_ejercido": "",
+      "dependencias": []
+    },
+    "2026": {
+      "aprobado_federal_mxn": null,
+      "ejercido_federal_mxn": null,
+      "fuente_aprobado": "",
+      "fuente_ejercido": "",
+      "dependencias": []
+    }
+  }
+}
