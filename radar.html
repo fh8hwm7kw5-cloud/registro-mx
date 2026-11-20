@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radar informativo | REGISTRO MX</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172b4d;
+      margin: 0;
+    }
+    header {
+      background: #12365a;
+      color: white;
+      padding: 24px;
+    }
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 24px;
+    }
+    .aviso {
+      background: #fff4d6;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .noticia {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+    .noticia h2 {
+      font-size: 19px;
+      margin: 8px 0;
+    }
+    .noticia a { color: #075aa5; }
+    .meta { color: #526477; font-size: 14px; }
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>REGISTRO MX | Radar informativo</h1>
+    <a href="index.html" style="color:white">
+      Volver al inicio
+    </a>
+  </header>
+
+  <main>
+    <div class="aviso">
+      Este Radar presenta referencias periodísticas externas.
+      No constituyen pruebas de irregularidades ni forman
+      parte de las estadísticas oficiales de contratación.
+    </div>
+
+    <p id="actualizacion">Cargando noticias...</p>
+
+    <input id="busqueda"
+           placeholder="Buscar noticias, instituciones o proveedores">
+
+    <div id="noticias"></div>
+  </main>
+
+  <script>
+    let noticias = [];
+
+    function mostrar() {
+      const filtro = document.getElementById("busqueda")
+        .value.toLowerCase();
+
+      const contenedor = document.getElementById("noticias");
+      contenedor.replaceChildren();
+
+      const resultados = noticias.filter(n =>
+        [n.titulo, n.medio, n.categoria]
+          .join(" ").toLowerCase().includes(filtro)
+      );
+
+      for (const n of resultados) {
+        const tarjeta = document.createElement("article");
+        tarjeta.className = "noticia";
+
+        const meta = document.createElement("p");
+        meta.className = "meta";
+        const fecha = new Date(n.fecha);
+        meta.textContent =
+          (n.medio || "Medio no identificado") + " | " +
+          (isNaN(fecha.getTime())
+            ? "Fecha no disponible"
+            : fecha.toLocaleDateString("es-MX"));
+
+        const titulo = document.createElement("h2");
+        const enlace = document.createElement("a");
+        enlace.href = n.url;
+        enlace.target = "_blank";
+        enlace.rel = "noopener noreferrer";
+        enlace.textContent = n.titulo;
+        titulo.appendChild(enlace);
+
+        const categoria = document.createElement("p");
+        categoria.textContent =
+          n.categoria || "Cobertura periodística";
+
+        tarjeta.append(meta, titulo, categoria);
+        contenedor.appendChild(tarjeta);
+      }
+
+      if (!resultados.length) {
+        contenedor.textContent = "No se encontraron noticias.";
+      }
+    }
+
+    async function cargar() {
+      try {
+        const respuesta = await fetch(
+          "radar.json?v=" + Date.now(),
+          {cache: "no-store"}
+        );
+
+        if (!respuesta.ok) {
+          throw new Error("No se pudo cargar radar.json");
+        }
+
+        const datos = await respuesta.json();
+        noticias = Array.isArray(datos.noticias)
+          ? datos.noticias
+          : [];
+
+        document.getElementById("actualizacion").textContent =
+          "Última actualización: " +
+          (datos.actualizado
+            ? new Date(datos.actualizado)
+                .toLocaleString("es-MX")
+            : "No disponible");
+
+        mostrar();
+      } catch (error) {
+        document.getElementById("actualizacion").textContent =
+          "No fue posible cargar las noticias.";
+      }
+    }
+
+    document.getElementById("busqueda")
+      .addEventListener("input", mostrar);
+
+    cargar();
+  </script>
+</body>
+</html>
