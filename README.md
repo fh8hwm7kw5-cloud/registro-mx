@@ -16,3 +16,8 @@ Los recuentos son filas de los archivos, no contratos únicos. No representan ne
 
 ## Automatización
 El Radar automático existente continúa operando con `radar.json` y `radar.html`; este paquete NO cambia el workflow ni automatiza la importación de contratos. Para actualizar contratos se requiere un proceso independiente de descarga, validación y publicación.
+
+
+## REGISTRO MX 0.7
+
+Nuevo explorador `perfiles.html` que lee `perfiles_2025.json`, generado a partir del CSV oficial 2025 completo. Incluye perfiles por nombre de proveedor o dependencia, recuentos de filas, contrapartes, procedimientos y hasta 8 enlaces a registros originales por perfil. No se calculan montos ni se infieren irregularidades. Los datos del radar automático se mantienen en GitHub y no se incluyen en este ZIP; no borrar `radar.json`, `radar.html`, `.github` ni `scripts`.
